@@ -10,6 +10,7 @@ namespace Code.Units
     {
         private SimpleInput _input;
         private PlaceConfig _placeData;
+        
         private Vector2 _direction = Vector2.right;
 
         public Vector2 Direction => _direction; 

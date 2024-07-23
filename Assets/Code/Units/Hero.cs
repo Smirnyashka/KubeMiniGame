@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Code.Configs;
 using Code.Interfeces;
 using UnityEngine;
-using UnityEngine.Animations;
 using Zenject;
 
 namespace Code.Units
@@ -14,7 +14,7 @@ namespace Code.Units
         private HeroDirectionController _heroDirection;
 
         [Inject]
-        public void Construct(HeroConfig data, IMovement movement,HeroDirectionController heroDirection )
+        public void Construct(HeroConfig data, IMovement movement, HeroDirectionController heroDirection)
         {
             _data = data;
             _movement = movement;
@@ -24,9 +24,17 @@ namespace Code.Units
 
         public Vector2 Move() => _movement.Move(_data.Speed, _data.Position, _heroDirection.Direction);
 
-        private void Update()
+        private async void Update()
         {
+            await WriteData();
             transform.position = Move();
+        }
+
+        private async Task WriteData()
+        {
+            Debug.Log("fffffff");
+            for(int i =0; i< 10; i++) Debug.Log(i);
+            await Task.Yield();
         }
     }
 
