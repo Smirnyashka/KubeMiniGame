@@ -2,43 +2,30 @@
 using System.Threading.Tasks;
 using Code.Configs;
 using Code.Interfeces;
+using Code.Services.InputService;
 using UnityEngine;
 using Zenject;
 
 namespace Code.Units
 {
-    public class Hero : MonoBehaviour, IMovable, IInputHandler
+    public class Hero : MonoBehaviour, IMovable
     {
         private HeroConfig _data;
         private IMovement _movement;
-        private HeroDirectionController _heroDirection;
+        private Direction _heroDirection;
 
         [Inject]
-        public void Construct(HeroConfig data, IMovement movement, HeroDirectionController heroDirection)
+        public void Construct(HeroConfig data, Direction heroDirection)
         {
             _data = data;
-            _movement = movement;
             _heroDirection = heroDirection;
-            _movement = new SimpleMovement();
+            _movement = new HeroMovement(_data.Position);
         }
 
-        public Vector2 Move() => _movement.Move(_data.Speed, _data.Position, _heroDirection.Direction);
+        public Vector2 Move() => 
+            _movement.Move(_data.Speed, _heroDirection.Get(transform));
 
-        private async void Update()
-        {
-            await WriteData();
+        private void Update() => 
             transform.position = Move();
-        }
-
-        private async Task WriteData()
-        {
-            Debug.Log("fffffff");
-            for(int i =0; i< 10; i++) Debug.Log(i);
-            await Task.Yield();
-        }
-    }
-
-    public interface IInputHandler
-    {
     }
 }

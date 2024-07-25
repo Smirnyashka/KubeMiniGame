@@ -1,6 +1,6 @@
 ﻿using Code.Configs;
-using Code.Inpusts;
 using Code.Interfeces;
+using Code.Services.InputService;
 using Code.Units;
 using UnityEngine;
 using Zenject;
@@ -13,7 +13,6 @@ namespace Code.Installers
         [SerializeField] private HeroConfig _config;
         [SerializeField] private Hero _hero;
         [SerializeField] private PlaceConfig _placeConfig;
-        [SerializeField] private HeroDirectionController _heroDirection;
 
         public override void InstallBindings()
         {
@@ -35,9 +34,8 @@ namespace Code.Installers
 
         private void BindServices()
         {
-            Container.Bind<IMovement>().To<SimpleMovement>().AsSingle();
-            Container.Bind<HeroDirectionController>().FromInstance(_heroDirection).AsSingle();
-            Container.Bind<SimpleInput>().AsSingle();
+            Container.Bind<Direction>().AsSingle();
+            Container.Bind<IInput>().To<SimpleInput>().AsSingle();
         }
     }
 }

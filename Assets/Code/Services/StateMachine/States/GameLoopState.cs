@@ -1,11 +1,13 @@
-﻿namespace Code.Infrastructure
+﻿using Code.Services.SceneLoader;
+
+namespace Code.Services.StateMachine.States
 {
     class GameLoopState : IState
     {
         private readonly GameStateMachine _gameStateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly ISceneLoader _sceneLoader;
 
-        public GameLoopState(GameStateMachine gameStateMachine, SceneLoader sceneLoader)
+        public GameLoopState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
