@@ -3,12 +3,10 @@ using Zenject;
 
 namespace Code.Configs
 {
-    public class HeroConfig:MonoBehaviour
+    public class HeroConfig
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private Transform _position;
+        private float _speed = 4f;
 
         public float Speed => _speed;
-        public Transform Position => _position;
     }
 }

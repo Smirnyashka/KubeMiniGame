@@ -1,7 +1,7 @@
 ﻿using Code.Services.StateMachine.States;
 using Zenject;
 
-namespace Code.Installers
+namespace Code.Root
 {
     public class StateMachineInstaller: MonoInstaller
     {

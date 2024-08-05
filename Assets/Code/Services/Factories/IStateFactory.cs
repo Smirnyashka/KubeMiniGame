@@ -1,6 +1,6 @@
 ﻿using Code.Services.StateMachine;
 
-namespace Code.Factories
+namespace Code.Services.Factories
 {
     public interface IStateFactory
     {

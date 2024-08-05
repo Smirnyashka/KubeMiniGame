@@ -393,7 +393,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1323121309}
   - component: {fileID: 1323121308}
-  - component: {fileID: 1323121310}
   - component: {fileID: 1323121311}
   m_Layer: 0
   m_Name: Circle
@@ -469,20 +468,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1323121310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323121307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fd837746394549ad66328195657389, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 4
-  _position: {fileID: 1323121309}
 --- !u!114 &1323121311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,9 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff780b44d2a41b69a94af10cdfb3b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 1323121310}
-  _hero: {fileID: 1323121311}
   _placeConfig: {fileID: 1953275488}
+  count: 5
 --- !u!1 &1590935921
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1754004971}
+  - component: {fileID: 1754004972}
   m_Layer: 0
   m_Name: CubePool
   m_TagString: Untagged
@@ -690,6 +675,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754004972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754004970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e2bda10bd94bccbbead91007224b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 5
+  _transform: {fileID: 1754004971}
 --- !u!1 &1953275486
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnTime: 10
   _speed: 4
-  _centerPoint: {x: 1.3, y: 0}
+  _centerPoint: {x: 1.3, y: -3}
 --- !u!1001 &5993936129839090805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -899,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnTime: 40
   _speed: 4
-  _centerPoint: {x: 1.3, y: 0}
+  _centerPoint: {x: 1.3, y: -3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

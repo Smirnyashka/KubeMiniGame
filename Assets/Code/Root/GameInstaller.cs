@@ -1,10 +1,10 @@
-﻿using Code.Factories;
-using Code.Services.AssetProvider;
+﻿using Code.Services.AssetProvider;
+using Code.Services.Factories;
 using Code.Services.SceneLoader;
 using Code.Services.StateMachine;
 using Zenject;
 
-namespace Code.Installers
+namespace Code.Root
 {
     public class GameInstaller: MonoInstaller
     {
@@ -19,8 +19,11 @@ namespace Code.Installers
         private void BindSceneLoader() => 
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
 
-        private void BindAssetProvider() => 
+        private void BindAssetProvider()
+        {
+            Container.BindInterfacesAndSelfTo<AssetPathes>().AsSingle();
             Container.BindInterfacesAndSelfTo<AssetProvider>().AsSingle();
+        }
 
         private void BindFactories()
         {

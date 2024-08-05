@@ -1,7 +1,7 @@
-﻿using Zenject;
-using Code.Services.StateMachine;
+﻿using Code.Services.StateMachine;
+using Zenject;
 
-namespace Code.Factories
+namespace Code.Services.Factories
 {
     public class StateFactory : IStateFactory
     {

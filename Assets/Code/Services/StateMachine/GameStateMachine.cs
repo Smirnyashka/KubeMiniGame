@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Factories;
+using Code.Services.Factories;
 using Code.Services.StateMachine.States;
 using Zenject;
 

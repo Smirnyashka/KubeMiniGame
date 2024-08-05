@@ -1,24 +1,32 @@
 using System.Collections.Generic;
-using Code.Factories;
-using Unity.VisualScripting;
+using Code.Services.AssetProvider;
+using Code.Services.Factories;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Code.Pool
+namespace Code.Services.Pool
 {
-    public class PoolMono<T> where T : MonoBehaviour
+    public class PoolMono<T> where T: MonoBehaviour
     {
-
         private GameFactory _gameFactory;
         private Transform _container;
-        private int _count;
+        private AssetPathes _pathes;
 
         private Queue<T> _pool;
 
-        public PoolMono(GameFactory gameFactory, int count, Transform container)
+        public PoolMono(GameFactory gameFactory, int count, Transform container, AssetPathes pathes)
         {
             _gameFactory = gameFactory;
             _container = container;
+            _pathes = pathes;
             CreatePool(count);
+        }
+
+        public async UniTask Initialize(int count, Transform container = null)
+        {
+            _container = container;
+
+            await CreatePool(count);
         }
 
 
@@ -30,23 +38,25 @@ namespace Code.Pool
             {
                 CreateObject();
             }
+
             return _pool;
         }
 
         private T CreateObject(bool isActiveByDefault = false)
         {
-            GameObject createdObject = _gameFactory.CreateBlackCube();
-            createdObject.SetActive(isActiveByDefault);
-            _pool.Enqueue(createdObject as T);
-            return GetFreeElement();
+            var item = _gameFactory.Create<T>(_pathes.RedKubePath);
+            item.SetActive(isActiveByDefault);
+            item.transform.SetParent(_container);
+            _pool.Enqueue(item);
+            return item;
         }
 
-        public T GetFreeElement()
+        public GameObject GetFreeElement()
         {
             if (HasFreeElement(out var element))
                 return element;
 
-            throw new System.Exception($"there is no free element in pool of type {typeof(T)}");
+            throw new System.Exception($"there is no free element in pool of type {typeof(GameObject)}");
         }
 
         private bool HasFreeElement(out T element)
@@ -56,15 +66,13 @@ namespace Code.Pool
                 if (!mono.gameObject.activeInHierarchy)
                 {
                     element = mono;
-                    element.gameObject.SetActive(true);
+                    mono.gameObject.SetActive(true);
                     return true;
                 }
             }
+
             element = null;
             return false;
         }
-
-
-
     }
 }

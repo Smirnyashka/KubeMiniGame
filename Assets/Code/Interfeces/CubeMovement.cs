@@ -6,21 +6,22 @@ namespace Code.Interfeces
     {
         private readonly Transform _transform;
         private readonly Vector2 _center;
+        private readonly Vector2 _offset;
 
-        public CubeMovement(Transform transform, Vector2 center)
+        public CubeMovement(Transform transform, Vector2 center, Vector2 offset)
         {
             _transform = transform;
             _center = center;
+            _offset = offset;
         }
         
         public Vector2 Move(float speed, Vector2 direction)
         {
             Vector2 newPosition = _transform.position;
-            Vector2 offset = new Vector2(Random.Range(-2f, 2f), 0f);
+
+            Debug.Log(_offset);
             
-            Debug.Log(offset);
-            
-            var normalized = (_center - newPosition + offset).normalized;
+            var normalized = (_center - newPosition + _offset).normalized;
 
             newPosition += (speed * normalized * Time.deltaTime);
             return newPosition;

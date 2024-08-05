@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using Code.Configs;
+﻿using Code.Configs;
 using Code.Interfeces;
-using Code.Services.InputService;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +16,7 @@ namespace Code.Units
         {
             _data = data;
             _heroDirection = heroDirection;
-            _movement = new HeroMovement(_data.Position);
+            _movement = new HeroMovement(transform);
         }
 
         public Vector2 Move() => 

@@ -10,7 +10,9 @@ namespace Code.Units.Kubes
     {
         [SerializeField] private float _spawnTime;
         [SerializeField] private float _speed;
-        [SerializeField] private Vector2 _centerPoint = new Vector2(1.3f, 0f);
+        [SerializeField] private Vector2 _centerPoint = new Vector2(1.3f, -3f);
+
+        private Vector2 offset;
         
         private IMovement _movement;
         private PlaceConfig _place;
@@ -19,13 +21,14 @@ namespace Code.Units.Kubes
         public void Construct(PlaceConfig place)
         {
             _place = place;
-            _movement = new CubeMovement(transform, _centerPoint);
+            _movement = new CubeMovement(transform, _centerPoint, offset);
         }
         
         public void MoveToPoint()
         {
             gameObject.SetActive(true);
             transform.position = new Vector2(Random.Range(-2f, 5f), 5.5f);
+            Setoffset();
         }
 
 
@@ -36,6 +39,9 @@ namespace Code.Units.Kubes
             
             if(transform.position.y < -2.9f) MoveToPoint();
         }
+
+        private void Setoffset() => 
+            offset = new Vector2(Random.Range(-2f, 2f), 0f);
 
         public Vector2 Move() => _movement.Move(_speed, Vector2.zero);
 

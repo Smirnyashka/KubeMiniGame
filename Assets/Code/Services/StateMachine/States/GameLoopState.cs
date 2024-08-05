@@ -5,12 +5,11 @@ namespace Code.Services.StateMachine.States
     class GameLoopState : IState
     {
         private readonly GameStateMachine _gameStateMachine;
-        private readonly ISceneLoader _sceneLoader;
 
-        public GameLoopState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader)
+
+        public GameLoopState(GameStateMachine gameStateMachine)
         {
             _gameStateMachine = gameStateMachine;
-            _sceneLoader = sceneLoader;
         }
 
         public void Enter()

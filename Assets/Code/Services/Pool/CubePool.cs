@@ -1,10 +1,10 @@
-﻿using Code.Factories;
-using Code.Services.AssetProvider;
+﻿using Code.Services.AssetProvider;
+using Code.Services.Factories;
 using Code.Units.Kubes;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Pool
+namespace Code.Services.Pool
 {
     public class CubePool: MonoBehaviour
     {
@@ -13,18 +13,13 @@ namespace Code.Pool
         private AssetPathes _pathes;
         
         [SerializeField] private int _count;
-        private Transform _transform;
+        [SerializeField] private Transform _transform;
 
         [Inject]
         public void Construct(PoolMono<Cube> pool, GameFactory factory)
         {
-            _pool = pool;
             _factory = factory;
-            _pool = new PoolMono<Cube>(_factory, _count, _transform);
+            _pool = new PoolMono<Cube>(_factory, _count, _transform, _pathes);
         }
-        
-        
-        
-        
     }
 }

@@ -2,7 +2,7 @@
 {
     public class AssetPathes
     {
-        public string BlackKubePath = "Assets/Prefabs/BlackKube.prefab";
-        public string RedKubePath = "Assets/Prefabs/RedKube.prefab";
+        public string BlackKubePath = "Prefabs/RedKube";
+        public string RedKubePath = "Prefabs/RedKube";
     }
 }
